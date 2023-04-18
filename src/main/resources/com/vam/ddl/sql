@@ -1,0 +1,13 @@
+create table vam_board(
+    bno int auto_increment,
+    title varchar(150),
+    content varchar(2000),
+    writer varchar(50),
+    regdate timestamp default now(),
+    updatedate timestamp default now(),
+    constraint pk_board PRIMARY key(bno)
+);
+
+insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
+insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
+insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
