@@ -9,4 +9,37 @@
         insert into vam_board(title, content, writer) values (#{title}, #{content}, #{writer})
     </insert>
     
+    <!-- 게시판 목폭 -->
+    <select id="getList" resultType="com.vam.model.BoardVO">
+    	select * from vam_board
+    </select>
+    
+    <!-- 게시판 조회 -->
+    <select id="getPage" resultType="com.vam.model.BoardVO">
+        select * from vam_board where bno = #{bno}
+    </select>
+    
+    <!-- 게시판 수정 -->
+    <update id="modify">
+    	update vam_board set title = #{title}, content = #{content}, updatedate = now() where bno = #{bno}
+    </update>
+    
+    <!-- 게시물 삭제 -->
+    <delete id="delete">
+    	delete from vam_board where bno = #{bno}
+    </delete>
+    
+    <!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.vam.model.BoardVO">
+    	select * from (
+    				select bno, title, writer, regdate, updatedate
+    				from vam_board order by bno desc) as T1
+    	limit #{skip}, #{amount}
+    </select>
+    
+    <!-- 게시물 총 개수 -->
+    <select id="getTotal" resultType="int">
+        select count(*) from vam_board
+    </select>
+    
   </mapper>

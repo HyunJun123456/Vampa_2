@@ -11,3 +11,13 @@ create table vam_board(
 insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
 insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
 insert into vam_board(title, content, writer) values ('테스트 제목', '테스트 내용', '작가');
+
+update vam_board set title='제목 수정', content='내용 수정', updateDate = now() where bno = 8;
+
+delete from vam_board where bno = '삭제할 게시판 번호';
+
+-- 재귀 복사
+insert into vam_board(title,content,writer)(select title,content, writer from vam_board);
+ 
+-- 행 확인
+select count(*) from vam_board;
