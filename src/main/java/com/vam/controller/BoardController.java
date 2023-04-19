@@ -32,7 +32,7 @@ public class BoardController {
 		// model.addAttribute("list", bservice.getList());
 		model.addAttribute("list", bservice.getListPaging(cri));
 
-		int total = bservice.getTotal();
+		int total = bservice.getTotal(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker", pageMake);
 	}
@@ -55,14 +55,16 @@ public class BoardController {
 
 	/* 게시판 조회 */
 	@GetMapping("/get")
-	public void boardGetPageGET(int bno, Model model) {
+	public void boardGetPageGET(int bno, Model model, Criteria cri) {
 		model.addAttribute("pageInfo", bservice.getPage(bno));
+		model.addAttribute("cri", cri);
 	}
 
 	/* 수정 페이지 이동 */
 	@GetMapping("/modify")
-	public void boardModifyGET(int bno, Model model) {
+	public void boardModifyGET(int bno, Model model, Criteria cri) {
 		model.addAttribute("pageInfo", bservice.getPage(bno));
+		model.addAttribute("cri", cri);
 	}
 
 	/* 페이지 수정 */

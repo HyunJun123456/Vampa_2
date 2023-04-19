@@ -31,15 +31,50 @@
     
     <!-- 게시물 목록(페이징) -->
     <select id="getListPaging" resultType="com.vam.model.BoardVO">
-    	select * from (
-    				select bno, title, writer, regdate, updatedate
-    				from vam_board order by bno desc) as T1
-    	limit #{skip}, #{amount}
+    
+        select * from (
+                select bno, title, writer, regdate, updatedate  
+                from vam_board 
+                <if test="keyword != null">
+                    <include refid="criteria"></include>
+                </if>
+                order by bno desc) as T1
+        limit #{skip},#{amount}
+    
     </select>
     
     <!-- 게시물 총 개수 -->
     <select id="getTotal" resultType="int">
+    
         select count(*) from vam_board
-    </select>
+        
+        <if test="keyword != null">
+            <include refid="criteria"></include>
+        </if>    
+    
+    </select>  
+    
+    
+    <!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="where (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like concat('%',#{keyword},'%') 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like concat('%',#{keyword},'%') 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like concat('%',#{keyword},'%' )
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
     
   </mapper>
