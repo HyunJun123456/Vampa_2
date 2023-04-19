@@ -195,7 +195,6 @@
 	let moveForm = $("#moveForm");
 	$(".move").on("click", function(e){
 		e.preventDefault();
-		
 		moveForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
 		moveForm.attr("action", "/board/get");
 		moveForm.submit();

@@ -30,13 +30,15 @@ public class PageMakerDTO {
     	this.startPage = this.endPage - 9;
 
     	/* 전체 마지막 페이지 */
-    	int realEnd = (int)(Math.ceil(total*1.0/cri.getAmount()));
+    	int realEnd = (int)(Math.ceil(total*1.0/cri.getAmount())); // (int)로 다시 형변환 해주는 이유는 Math.ceil()메소드의 반환 타입이 double이기 때문
     	/* 전체 마지막 페이지(realend)가 화면에 보이는 마지막페이지(endPage)보다 작은 경우, 보이는 페이지(endPage) 값 조정 */
     	if(realEnd < this.endPage) {
             this.endPage = realEnd;
         }
 
+    	/* 시작 페이지(startPage)값이 1보다 큰 경우 */
     	this.prev = this.startPage > 1;
+    	/* 마지막 페이지(endPage)값이 realEnd보다 작은 경우 */
     	this.next = this.endPage < realEnd;
 
 

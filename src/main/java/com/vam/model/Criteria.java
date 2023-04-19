@@ -11,17 +11,17 @@ public class Criteria {
 
     /* 검색 키워드 */
     private String keyword;
-    
+
     /* 스킵 할 게시물 수( (pageNum-1) * amount ) */
     private int skip;
-    
+
     /* 검색 타입 */
     private String type;
-    
+
     /* 검색 타입 배열 */
     private String[] typeArr;
 
-    /* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
+    /* 기본 생성자 -> 기본 세팅 : pageNum = 1, amount = 10 */
     public Criteria() {
         this(1,10);
         this.skip = 0;
@@ -91,10 +91,10 @@ public class Criteria {
 				+ ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
 	}
 
-	
 
-	
-	
+
+
+
 
 
 }

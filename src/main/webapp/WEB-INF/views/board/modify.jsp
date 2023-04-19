@@ -81,7 +81,11 @@ textarea{
 	<div class="input_wrap">
 		<label>게시판 수정일</label>
 		<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
-	</div>		
+	</div>
+	<!-- 수정 완료하고나서도 제자리로 돌아오기? -->
+	<input type="hidden" name="pageNum" value="${cri.pageNum }">
+    <input type="hidden" name="amount" value="${cri.amount }"> 
+    
 	<div class="btn_wrap">
 		<a class="btn" id="list_btn">목록 페이지</a> 
 		<a class="btn" id="modify_btn">수정 완료</a>

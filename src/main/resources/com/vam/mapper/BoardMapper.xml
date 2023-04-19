@@ -58,7 +58,7 @@
     <!-- 검색 조건문 -->
     <sql id="criteria">
         <trim prefix="where (" suffix=")" prefixOverrides="OR">
-            <foreach collection="typeArr" item="type">
+            <foreach collection="#{typeArr}" item="type">
                 <trim prefix="OR">
                     <choose>
                         <when test="type == 'T'.toString()">
